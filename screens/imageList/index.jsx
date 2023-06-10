@@ -1,12 +1,13 @@
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import React from 'react'
 import { styles } from './styles'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const ImageList = () => {
   return (
-    <View style={styles.container}>
-      <Text>ImageList</Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>My Photos</Text>
+    </SafeAreaView>
   )
 }
 
