@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen } from "../screens";
+import { HomeScreen, ImageList } from "../screens";
 
 const Stack = createNativeStackNavigator(); 
 
@@ -8,7 +8,8 @@ const InstaNavigator = () => {
     <Stack.Navigator screenOptions={{
       headerShown: false,
     }}>
-      <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: true,}} />      
+      <Stack.Screen name="Home" component={HomeScreen} />      
+      <Stack.Screen name="ImageList" component={ImageList} />      
     </Stack.Navigator>
   );
 };
