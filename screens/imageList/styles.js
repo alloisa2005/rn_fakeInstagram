@@ -17,4 +17,7 @@ export const styles = StyleSheet.create({
     color: 'white',
     fontFamily: "Roboto-Bold",
   },
+  listContainer:{
+    flex: 1,    
+  },
 });

@@ -8,50 +8,20 @@ import {
   ScrollView,
 } from "react-native";
 import { MiBoton } from "../../components";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 import { styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
 import { addImage } from "../../redux/slices/imageSlice";
+import { getPermissionCamera, getPermissionLibrary} from '../../utils/verifiyPermissions';
 
 const NewImage = () => {
-  const dispatch = useDispatch();
-  const { images } = useSelector((state) => state.images);
+  const dispatch = useDispatch();  
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState(null);
-
-  const getPermissionCamera = async () => {
-    const { status } = await ImagePicker.requestCameraPermissionsAsync();
-
-    if (status !== "granted") {
-      Alert.alert(
-        "Permiso denegado",
-        "Necesitamos permisos para usar la camara",
-        [{ text: "Ok" }]
-      );
-      return false;
-    }
-
-    return true;
-  };
-
-  const getPermissionLibrary = async () => {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (status !== "granted") {
-      Alert.alert(
-        "Permiso denegado",
-        "Necesitamos permisos para acceder a la galería",
-        [{ text: "Ok" }]
-      );
-      return false;
-    }
-
-    return true;
-  };
+  const [image, setImage] = useState(null);  
 
   const imageFromLibrary = async () => {
     const isPermitted = await getPermissionLibrary();
@@ -132,6 +102,7 @@ const NewImage = () => {
         <View style={styles.buttonContainer}>
           <MiBoton titulo='Save' estilos={{marginTop: 20,}} onPress={onHandlerSaveImage} />            
         </View>
+        
         
       </ScrollView>
     </SafeAreaView>

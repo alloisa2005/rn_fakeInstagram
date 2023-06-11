@@ -1,4 +1,4 @@
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -23,6 +23,22 @@ const ImageList = () => {
         <TouchableOpacity onPress={onHandlerNavigate}>
           <MaterialIcons name="add-a-photo" size={26} color="white" />
         </TouchableOpacity>
+      </View>
+
+      {/* List of Images */}
+      <View style={styles.listContainer}>
+        <FlatList 
+          data={images}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => null }>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Image source={{uri: item.image}} style={{width: 80, height: 70, borderRadius: 5,}} />
+                <Text style={styles.imageTitle}>{item.title}</Text>                
+              </View>
+            </TouchableOpacity>
+          )}
+        />
       </View>
     </SafeAreaView>
   );
