@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   },
   buttonTitle: {
     color: "#3089AB",
-    fontSize: 30,
+    fontSize: 25,
     fontFamily: "Roboto-Bold",
   },
 });
