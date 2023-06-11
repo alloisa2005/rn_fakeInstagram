@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import InstaNavigator from './navigation/instaNavigator';
 import { useFonts } from 'expo-font';
 import { View, ActivityIndicator } from 'react-native';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 export default function App() {
   const [loaded] = useFonts({
@@ -22,9 +24,11 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <InstaNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <InstaNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 }
 

@@ -4,9 +4,13 @@ import { styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { useNavigation } from "@react-navigation/native";
+import { selectImages } from "../../redux/slices/imageSlice";
+import { useSelector } from "react-redux";
 
 const ImageList = () => {
   const navigation = useNavigation();
+
+  const { images } = useSelector((state) => state.images);
 
   const onHandlerNavigate = () => {
     navigation.navigate("NewImage");

@@ -8,13 +8,19 @@ import {
   ScrollView,
 } from "react-native";
 import { MiBoton } from "../../components";
-
+import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import { styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
+import { addImage } from "../../redux/slices/imageSlice";
 
 const NewImage = () => {
+  const dispatch = useDispatch();
+  const { images } = useSelector((state) => state.images);
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
 
   const getPermissionCamera = async () => {
@@ -72,7 +78,13 @@ const NewImage = () => {
   };
 
   const onHandlerSaveImage = () => {
-    Alert.alert("Image Saved", "Image saved successfully", [{ text: "Ok" }]);
+    dispatch(addImage({
+      id: Math.random().toString(),
+      title,
+      description,
+      image: image,
+    }));
+    /* Alert.alert("Image Saved", "Image saved successfully", [{ text: "Ok" }]); */
   };
   
   return (
@@ -85,6 +97,8 @@ const NewImage = () => {
             placeholder="Title..."
             maxLength={30}
             style={styles.inputText}
+            value={title}
+            onChangeText={(text) => setTitle(text)}
           />
         </View>
 
@@ -94,6 +108,8 @@ const NewImage = () => {
             numberOfLines={4}
             placeholder="Description..."
             style={styles.inputText}
+            value={description}
+            onChangeText={(text) => setDescription(text)}
           />
         </View>
 
@@ -116,6 +132,7 @@ const NewImage = () => {
         <View style={styles.buttonContainer}>
           <MiBoton titulo='Save' estilos={{marginTop: 20,}} onPress={onHandlerSaveImage} />            
         </View>
+        
       </ScrollView>
     </SafeAreaView>
   );
