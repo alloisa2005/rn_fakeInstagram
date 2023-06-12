@@ -4,17 +4,23 @@ import { styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { useNavigation } from "@react-navigation/native";
-import { selectImages } from "../../redux/slices/imageSlice";
-import { useSelector } from "react-redux";
+import { selectImages, setSelected } from "../../redux/slices/imageSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const ImageList = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const { images } = useSelector((state) => state.images);
 
   const onHandlerNavigate = () => {
     navigation.navigate("NewImage");
   };
+
+  const onHandlerSelectImage = (item) => {
+    dispatch(setSelected(item));
+    navigation.navigate("ImageDetail");
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -31,8 +37,8 @@ const ImageList = () => {
           data={images}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => null }>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <TouchableOpacity onPress={() => onHandlerSelectImage(item) }>
+              <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10,}}>
                 <Image source={{uri: item.image}} style={{width: 80, height: 70, borderRadius: 5,}} />
                 <Text style={styles.imageTitle}>{item.title}</Text>                
               </View>

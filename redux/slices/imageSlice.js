@@ -21,5 +21,6 @@ const imageSlice = createSlice({
 export const { addImage, setSelected } = imageSlice.actions;
 
 export const selectImages = (state) => state.images.images;
+export const selectedImage = (state) => state.images.selected;
 
 export default imageSlice.reducer;

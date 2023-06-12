@@ -18,6 +18,13 @@ export const styles = StyleSheet.create({
     fontFamily: "Roboto-Bold",
   },
   listContainer:{
+    marginTop: 10,
     flex: 1,    
+  },
+  imageTitle:{
+    marginLeft: 10,
+    fontFamily: "Roboto-Bold",
+    color: 'white',
+    fontSize: 18,
   },
 });

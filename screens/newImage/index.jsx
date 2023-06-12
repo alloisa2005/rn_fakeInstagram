@@ -15,9 +15,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
 import { addImage } from "../../redux/slices/imageSlice";
 import { getPermissionCamera, getPermissionLibrary} from '../../utils/verifiyPermissions';
+import { useNavigation } from "@react-navigation/native";
 
 const NewImage = () => {
   const dispatch = useDispatch();  
+  const navigation = useNavigation();
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -48,13 +50,16 @@ const NewImage = () => {
   };
 
   const onHandlerSaveImage = () => {
+    if(!title || !description || !image) return Alert.alert('Error', 'All fields are required'
+    ,[{text: 'Ok'}]);
+    
     dispatch(addImage({
       id: Math.random().toString(),
       title,
       description,
       image: image,
     }));
-    /* Alert.alert("Image Saved", "Image saved successfully", [{ text: "Ok" }]); */
+    navigation.navigate('ImageList');
   };
   
   return (

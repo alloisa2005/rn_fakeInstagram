@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen, ImageList, NewImage } from "../screens";
+import { HomeScreen, ImageDetail, ImageList, NewImage } from "../screens";
 
 const Stack = createNativeStackNavigator(); 
 
@@ -11,6 +11,7 @@ const InstaNavigator = () => {
       <Stack.Screen name="Home" component={HomeScreen} />      
       <Stack.Screen name="ImageList" component={ImageList} />      
       <Stack.Screen name="NewImage" component={NewImage} />    
+      <Stack.Screen name="ImageDetail" component={ImageDetail} />   
     </Stack.Navigator>
   );
 };
