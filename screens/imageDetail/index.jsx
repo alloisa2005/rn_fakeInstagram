@@ -16,7 +16,7 @@ const ImageDetail = () => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Titulo: {selected.title}</Text>
 
-      <Image source={{uri: selected.image}} style={{width: '100%', height: 250,}} />
+      <Image source={{uri: selected.imageUri}} style={{width: '100%', height: 250,}} />
 
       <Text style={styles.description}>Descripción: {selected.description}</Text>
 

@@ -13,7 +13,7 @@ import React, { useState } from "react";
 import { styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
-import { addImage } from "../../redux/slices/imageSlice";
+import { saveImage } from "../../redux/slices/imageSlice";
 import { getPermissionCamera, getPermissionLibrary} from '../../utils/verifiyPermissions';
 import { useNavigation } from "@react-navigation/native";
 
@@ -53,12 +53,11 @@ const NewImage = () => {
     if(!title || !description || !image) return Alert.alert('Error', 'All fields are required'
     ,[{text: 'Ok'}]);
     
-    dispatch(addImage({
-      id: Math.random().toString(),
+    dispatch(saveImage({      
       title,
       description,
-      image: image,
-    }));
+      imageUri: image,
+    })).unwrap();
     navigation.navigate('ImageList');
   };
   

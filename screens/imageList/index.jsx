@@ -1,10 +1,10 @@
 import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { styles } from "./styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialIcons } from '@expo/vector-icons'; 
 import { useNavigation } from "@react-navigation/native";
-import { selectImages, setSelected } from "../../redux/slices/imageSlice";
+import { setSelected, getImages } from "../../redux/slices/imageSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const ImageList = () => {
@@ -13,6 +13,10 @@ const ImageList = () => {
 
   const { images } = useSelector((state) => state.images);
 
+  useEffect(() => {
+    console.log("useEffect");
+    dispatch(getImages());
+  }, []);
   const onHandlerNavigate = () => {
     navigation.navigate("NewImage");
   };
@@ -39,7 +43,7 @@ const ImageList = () => {
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => onHandlerSelectImage(item) }>
               <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 10,}}>
-                <Image source={{uri: item.image}} style={{width: 80, height: 70, borderRadius: 5,}} />
+                <Image source={{uri: item.imageUri}} style={{width: 80, height: 70, borderRadius: 5,}} />
                 <Text style={styles.imageTitle}>{item.title}</Text>                
               </View>
             </TouchableOpacity>

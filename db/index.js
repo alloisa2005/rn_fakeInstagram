@@ -21,7 +21,7 @@ export const init = () => {
   return promise;
 };
 
-export const saveImage = (title, imageUri, description) => {
+export const insertImage = (title, imageUri, description) => {
   const promise = new Promise((resolve, reject) => {
     db.transaction(tx => {
       tx.executeSql(
@@ -39,7 +39,7 @@ export const saveImage = (title, imageUri, description) => {
   return promise;
 };
 
-export const getImages = () => {
+export const getImagesDB = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction(tx => {
       tx.executeSql(
