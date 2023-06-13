@@ -12,6 +12,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',    
   },
+  loadingContainer:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   title:{
     fontSize: 22,
     color: 'white',

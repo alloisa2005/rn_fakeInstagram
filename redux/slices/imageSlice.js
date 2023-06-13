@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getImagesDB, insertImage } from "../../db";
+import { deleteImageDB, getImagesDB, insertImage } from "../../db";
 
 const initialState = {
   images: [],  
@@ -20,6 +20,16 @@ export const saveImage = createAsyncThunk("images/saveImage", async (image, thun
 export const getImages = createAsyncThunk("images/getImages", async (_, thunkAPI) => {
   try{    
     const dbResult = await getImagesDB();    
+    return dbResult.rows._array;
+  } catch (err) {
+    return thunkAPI.rejectWithValue({ error: err.message });
+  }
+  }
+);
+
+export const deleteImage = createAsyncThunk("images/deleteImage", async (id, thunkAPI) => {
+  try{
+    const dbResult = await deleteImageDB(id);
     return dbResult.rows._array;
   } catch (err) {
     return thunkAPI.rejectWithValue({ error: err.message });
@@ -55,6 +65,16 @@ const imageSlice = createSlice({
         state.loading = false;        
       })
       .addCase(getImages.rejected, (state, action) => {
+        state.loading = false;
+      })
+      .addCase(deleteImage.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(deleteImage.fulfilled, (state, action) => {
+        state.images = action.payload;
+        state.loading = false;        
+      })
+      .addCase(deleteImage.rejected, (state, action) => {
         state.loading = false;
       });
   },    

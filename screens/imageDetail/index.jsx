@@ -21,7 +21,7 @@ const ImageDetail = () => {
       <Text style={styles.description}>Descripción: {selected.description}</Text>
 
       <View style={{width: '100%', alignItems:'center', justifyContent:'center', marginTop: 10,}}>
-        <MiBoton titulo={'Volver'} onPress={() => navigation.navigate('ImageList')}/>
+        <MiBoton titulo={'Volver'} onPress={() => navigation.navigate('ImageList')}/>        
       </View>
     </SafeAreaView>
   )
