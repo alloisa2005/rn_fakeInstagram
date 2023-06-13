@@ -6,6 +6,14 @@ import { useFonts } from 'expo-font';
 import { View, ActivityIndicator } from 'react-native';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import { init } from './db';
+
+init()
+  .then(() => console.log('Database inicialized.'))
+  .catch(err => {
+    console.log('Initialization failed.');
+    console.log(err);
+  });
 
 export default function App() {
   const [loaded] = useFonts({

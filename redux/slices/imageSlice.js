@@ -5,6 +5,7 @@ const initialState = {
   selected: null,
 };
 
+
 const imageSlice = createSlice({
   name: "images",
   initialState,
@@ -15,7 +16,7 @@ const imageSlice = createSlice({
     setSelected: (state, action) => {
       state.selected = action.payload;
     },
-  }
+  }  
 });
 
 export const { addImage, setSelected } = imageSlice.actions;
